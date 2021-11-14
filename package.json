@@ -1,0 +1,23 @@
+{
+  "name": "pingpong",
+  "version": "1.0.0",
+  "description": "pingpong app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J0ne/pingpong-svc.git"
+  },
+  "author": "JM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J0ne/pingpong-svc/issues"
+  },
+  "homepage": "https://github.com/J0ne/pingpong-svc#readme"
+}
