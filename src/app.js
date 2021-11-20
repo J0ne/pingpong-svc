@@ -25,9 +25,8 @@ const writeToFile = async (msg) => {
 
 app.get("/pingpong", (req, res) => {
   state = `Ping / pongs: ${requestCounter}`
-  writeToFile(state);
+  //writeToFile(state);
   res.send(state);
-
   requestCounter++;
 });
 
