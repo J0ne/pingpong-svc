@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: devops-w-kube
   name: pingpong-svc
 spec:
   type: ClusterIP
