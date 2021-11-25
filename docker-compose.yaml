@@ -2,17 +2,23 @@ version: "3.5"
 
 services:
   backend-app:
-    build: .
+    image: j0ne/pingpong:rest-db-3
     environment: 
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_HOST=db
+      - DB_USER=api_user
+      - DB_PASSWORD=password
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=kube_db
+    depends_on:
+      - db
     ports:
       - 3003:3003
   db:
-    image: pingpong-db:latest-2
-    restart: unless-stopped
+    image: j0ne/pingpong-db:latest-2
+    restart: always
     environment:
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
     volumes:
-      - ./database:/var/lib/postgresql/data
+        - postgres:/var/lib/postgresql/data
     container_name: db

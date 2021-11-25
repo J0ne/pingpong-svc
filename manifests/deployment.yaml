@@ -15,23 +15,16 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: j0ne/pingpong:rest-1
-        - name: postgres-db
-          image: sha256:36f4c5258c1b0693fbb9cfd7981427e4c2a63fb20bda441f95c408b87cea6a04
-          volumeMounts:
-          - name: pingpong_db
-            mountPath: /data
+          image: j0ne/pingpong:rest-db-3
           ports:
-          - containerPort: 5432
-volumeClaimTemplates:
-    - metadata:
-        name: pingpong_db
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        storageClassName: local-path
-        resources:
-          requests:
-            storage: 100Mi
+            - containerPort: 3003
+          env:
+          - name: DB_PASSWORD
+            value: "password"
+          - name: DB_HOST
+            value: pingpong-db-svc
+          - name: DB_DATABASE
+            value: kube_db
 
 
 

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: devops-w-kube
+  name: pingpong-db-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingpongdb-app
+  template:
+    metadata:
+      labels:
+        app: pingpongdb-app
+    spec:
+      containers:
+        - name: pingpongdb-app
+          image: j0ne/pingpong-db:10-1
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgresdb
+      volumes:
+        - name: postgresdb
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim

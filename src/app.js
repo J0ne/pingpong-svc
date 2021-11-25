@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 
 let requestCounter = 0;
-let state = '';
+let state = "";
 const port = 3003;
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -28,26 +28,24 @@ const writeToFile = async (msg) => {
 };
 
 app.get("/pingpong", (req, res) => {
-  state = `Ping / pongs: ${requestCounter}`
-
-  setCounterValue(requestCounter);
-  res.send(state);
-  //res.status(201).json({ status: "success", message: "Book added." });
-  requestCounter++;
-});
-
-const getPingPongs = (request, response) => {
-  pool.query("SELECT * FROM ping_count", (error, results) => {
+  pool.query("SELECT * FROM ping_count;", (error, results) => {
     if (error) {
       throw error;
     }
-    response.status(200).json(results.rows);
+    const fetchedValue = results.rows[0]?.count;
+    state = `Ping / pongs: ${fetchedValue}`;
+
+    res.send(state);
+    requestCounter = fetchedValue + 1;
+    setCounterValue(requestCounter);
   });
-};
+
+});
+
 
 const setCounterValue = (count) => {
-
-  pool.query("UPDATE ping_count set COUNT=($1)", [count], (error) => {
+  console.log('Updates value', count)
+  pool.query("update ping_count set count=$1;", [count], (error) => {
     if (error) {
       throw error;
     }
@@ -55,6 +53,5 @@ const setCounterValue = (count) => {
 };
 
 app.listen(port, () => {
-
   console.log(`Server started in port ${port}`);
 });
