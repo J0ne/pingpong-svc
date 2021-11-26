@@ -1,5 +1,4 @@
 node_modules
 database
 .env
-manifests/secret.yaml
 key.txt
