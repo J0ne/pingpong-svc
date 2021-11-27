@@ -5,4 +5,4 @@ metadata:
   labels:
     app: pingpong-db
 data:
-  POSTGRES_PASWORD: password
+  DB_HOST: pingpong-db-svc

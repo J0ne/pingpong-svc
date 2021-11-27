@@ -18,13 +18,11 @@ spec:
           image: j0ne/pingpong:rest-db-3
           ports:
             - containerPort: 3003
-          env:
-          - name: DB_PASSWORD
-            value: "password"
-          - name: DB_HOST
-            value: pingpong-db-svc
-          - name: DB_DATABASE
-            value: kube_db
+          envFrom:
+            - secretRef:
+                name: postgres-pw
+            - configMapRef:
+                name: postgres-config
 
 
 
