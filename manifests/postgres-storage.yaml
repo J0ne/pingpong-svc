@@ -1,10 +1,11 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
+  namespace: devops-w-kube
   name: postgres-pv-volume
   labels:
     type: local
-    app: pingpongdb-app
+    app: pingpong-db
 spec:
   storageClassName: manual
   capacity:
@@ -13,15 +14,16 @@ spec:
     - ReadWriteMany
   hostPath:
     path: "/mnt/data"
+
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
+  namespace: devops-w-kube
   name: postgres-pv-claim
   labels:
-    app: pingpongdb-app
+    app: pingpong-db
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteMany
   resources:

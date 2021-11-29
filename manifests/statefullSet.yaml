@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
+  namespace: devops-w-kube
   name: postgres-ss
 spec:
   serviceName: pingpong-db-svc
@@ -22,12 +23,13 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+              subPath: postgres
   volumeClaimTemplates:
     - metadata:
         name: data
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: local-path
+        # storageClassName: local-path
         resources:
           requests:
             storage: 100Mi
