@@ -4,14 +4,14 @@ metadata:
   namespace: devops-w-kube
   name: pingpong-svc
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: pingpong
   ports:
-    - port: 2345
-      name: http
+    - port: 2347
       protocol: TCP
       targetPort: 3003
+
 ---
 
 apiVersion: v1 

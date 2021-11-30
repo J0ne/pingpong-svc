@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: j0ne/pingpong:rest-db-3
+          image: j0ne/pingpong:rest-db-4
           ports:
             - containerPort: 3003
           envFrom:
