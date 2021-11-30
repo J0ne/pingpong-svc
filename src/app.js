@@ -15,7 +15,7 @@ let requestCounter = 0;
 let state = "";
 const port = 3003;
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.status(200).send("Hello World!");
 });
 
 const writeToFile = async (msg) => {
@@ -35,7 +35,7 @@ app.get("/pingpong", (req, res) => {
     const fetchedValue = results.rows[0]?.count;
     state = `Ping / pongs: ${fetchedValue}`;
 
-    res.send(state);
+    res.status(200).send(state);
     requestCounter = fetchedValue + 1;
     setCounterValue(requestCounter);
   });
