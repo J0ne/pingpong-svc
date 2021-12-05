@@ -27,6 +27,18 @@ const writeToFile = async (msg) => {
   }
 };
 
+app.get('/', (req, res) => res.status(200).send('ok then!'));
+
+app.get("/healthz", (req, res) => {
+  pool.query("SELECT 1;", (error, results) => {
+    if (error) {
+      res.status(500);
+    } else{
+      res.status(200).send('db ok');
+    };
+  });
+});
+
 app.get("/pingpong", (req, res) => {
   pool.query("SELECT * FROM ping_count;", (error, results) => {
     if (error) {
@@ -39,12 +51,10 @@ app.get("/pingpong", (req, res) => {
     requestCounter = fetchedValue + 1;
     setCounterValue(requestCounter);
   });
-
 });
 
-
 const setCounterValue = (count) => {
-  console.log('Updates value', count)
+  console.log("Updates value", count);
   pool.query("update ping_count set count=$1;", [count], (error) => {
     if (error) {
       throw error;
