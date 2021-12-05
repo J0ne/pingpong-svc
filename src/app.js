@@ -27,8 +27,6 @@ const writeToFile = async (msg) => {
   }
 };
 
-app.get('/', (req, res) => res.status(200).send('ok then!'));
-
 app.get("/healthz", (req, res) => {
   pool.query("SELECT 1;", (error, results) => {
     if (error) {
