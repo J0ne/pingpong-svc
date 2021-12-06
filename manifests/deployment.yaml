@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: j0ne/pingpong:4.01
+          image: j0ne/pingpong:4.04
           ports:
             - containerPort: 3003
           envFrom:
@@ -28,4 +28,4 @@ spec:
             periodSeconds: 5 # How often to test
             httpGet:
                path: /healthz
-               port: 3541
+               port: 3003

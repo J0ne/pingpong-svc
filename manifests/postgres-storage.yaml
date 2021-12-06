@@ -11,11 +11,12 @@ spec:
   capacity:
     storage: 5Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   hostPath:
     path: "/mnt/data"
 
 ---
+
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -24,8 +25,9 @@ metadata:
   labels:
     app: pingpong-db
 spec:
+  storageClassName: manual
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 100Mi

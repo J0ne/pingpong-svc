@@ -7,14 +7,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pingpongdb-app
+      app: pingpong-db
   template:
     metadata:
       labels:
-        app: pingpongdb-app
+        app: pingpong-db
     spec:
       containers:
-        - name: pingpongdb-app
+        - name: pingpong-db
           image: j0ne/pingpong-db:10-1
           imagePullPolicy: "IfNotPresent"
           ports:
@@ -23,6 +23,6 @@ spec:
             - mountPath: /var/lib/postgresql/data
               name: postgresdb
       volumes:
-        - name: postgresdb
-          persistentVolumeClaim:
+       - name: postgresdb
+         persistentVolumeClaim:
             claimName: postgres-pv-claim
