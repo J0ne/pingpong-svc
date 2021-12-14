@@ -5,7 +5,7 @@ metadata:
   name: postgres-ss
 spec:
   serviceName: pingpong-db-svc
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: pingpong-db
