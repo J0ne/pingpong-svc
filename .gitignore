@@ -3,3 +3,4 @@ database
 .env
 key.txt
 temp
+secret,yaml
