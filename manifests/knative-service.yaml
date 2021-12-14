@@ -1,0 +1,24 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  namespace: devops-w-kube
+  name: pingpong-serverless
+spec:
+  template:
+    metadata:
+      name: pingpong-serverless-v1
+    spec:
+      containers:
+        - name: pingpong
+          image: j0ne/pingpong:5
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: postgres-pw
+            - configMapRef:
+                name: postgres-config
+          env:
+            - name: LISTEN_PORT
+              value: "8080"
+          

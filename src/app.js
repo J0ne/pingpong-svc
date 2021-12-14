@@ -3,6 +3,7 @@ const path = require("path");
 const fsPromises = require("fs").promises;
 const cors = require("cors");
 const { pool } = require("./config");
+require('dotenv').config();
 
 const directory = path.join("/", "usr", "src", "files");
 const filePath = path.join(directory, "pong.txt");
@@ -13,7 +14,7 @@ app.use(cors());
 
 let requestCounter = 0;
 let state = "";
-const port = 3003;
+const port = Number(process.env.LISTEN_PORT) || 8080;
 app.get("/", (req, res) => {
   res.status(200).send("Hello World!");
 });

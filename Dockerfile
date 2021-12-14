@@ -3,5 +3,6 @@ WORKDIR /usr/src/app
 COPY . .
 RUN npm i
 ENV DB_PASSWORD=password
-EXPOSE 3003
+ENV LISTEN_PORT=8080
+EXPOSE 8080
 CMD ["node", "./src/app.js"]
